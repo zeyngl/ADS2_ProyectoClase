@@ -12,14 +12,15 @@ const s3 = new AWS.S3();
 exports.handler = function(event, context) {
     
     /*event:
-        -base64Image
-        -extencion
+        -imagen
+        -extension
         -nombre
         -precio
+        -categoria
     */
     
-    let buffer = new Buffer(event.base64Image,"base64");
-    var url = putfile(buffer,event.nombre,event.extencion);
+    let buffer = new Buffer(event.imagen,"base64");
+    var url = putfile(buffer,event.nombre,event.extension);
     
     var tableName = "Producto";
     var _id = Date.now().toString();
@@ -35,6 +36,9 @@ exports.handler = function(event, context) {
             },
             nombre: {
                 S: event.nombre
+            },
+            categoria: {
+                S: event.categoria
             },
             precio: {
                 S: event.precio.toString()
@@ -65,9 +69,5 @@ const putfile = async (buffer, nombre, extension) => {
     
     await s3.putObject(params).promise();
     
-    return {
-        statusCode: 200,
-        body: name_buquet
-    };
+    return name_buquet;
 }
-
