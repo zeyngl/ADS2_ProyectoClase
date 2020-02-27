@@ -32,7 +32,7 @@ exports.handler = function(event, context) {
                 N: _id
             },
             url: {
-                S: "http://www.proyectoclase.com.s3-website.us-east-2.amazonaws.com/" + url
+                S: "http://www.proyectoclase.com.s3-website.us-east-2.amazonaws.com/productos/"+event.nombre+"."+event.extension
             },
             nombre: {
                 S: event.nombre
