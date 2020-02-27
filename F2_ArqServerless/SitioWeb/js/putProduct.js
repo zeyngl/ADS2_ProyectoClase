@@ -47,7 +47,7 @@ function limp(response){
 
   precio.value='';
   nombre.value='';
-  categoria.value='';
+  categoria.value='Seleccionar una';
   file.value='';
 
   return response;

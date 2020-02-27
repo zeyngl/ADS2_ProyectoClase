@@ -6,18 +6,17 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<title>Arq Serverless</title>
-		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
-		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
-		<link type="text/css" rel="stylesheet" href="css/slick.css"/>
-		<link type="text/css" rel="stylesheet" href="css/slick-theme.css"/>
-		<link type="text/css" rel="stylesheet" href="css/nouislider.min.css"/>
-		<link rel="stylesheet" href="css/font-awesome.min.css">
+ 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+ 		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
+ 		<link type="text/css" rel="stylesheet" href="css/slick.css"/>
+ 		<link type="text/css" rel="stylesheet" href="css/slick-theme.css"/>
+ 		<link type="text/css" rel="stylesheet" href="css/nouislider.min.css"/>
+ 		<link rel="stylesheet" href="css/font-awesome.min.css">
 		<link type="text/css" rel="stylesheet" href="css/style.css"/>
-		<script src="js/viewProducts.js"></script>
+		<script src="js/putProduct.js"></script> 
   </head>
-	<body onload="connection()">
+	<body>
 		<header>
-
 			<div id="top-header">
 				<div class="container">
 					<ul class="header-links pull-right">
@@ -25,12 +24,12 @@
 					</ul>
 				</div>
 			</div>
+			<!-- /TOP HEADER -->
 
-
+			<!-- MAIN HEADER -->
 			<div id="header">
 				<div class="container">
 					<div class="row">
-						<!-- LOGO -->
 						<div class="col-md-3">
 							<div class="header-logo">
 								<a href="#" class="logo">
@@ -38,7 +37,6 @@
 								</a>
 							</div>
 						</div>
-						<!-- /LOGO -->
 
 						<!-- SEARCH BAR -->
 						<div class="col-md-6">
@@ -56,10 +54,11 @@
 						</div>
 						<!-- /SEARCH BAR -->
 
+
+
 						<!-- ACCOUNT -->
 						<div class="col-md-3 clearfix">
 							<div class="header-ctn">
-								<!-- Wishlist -->
 								<div>
 									<a href="#">
 										<i class="fa fa-heart-o"></i>
@@ -110,16 +109,12 @@
 										</div>
 									</div>
 								</div>
-								<!-- /Cart -->
-
-								<!-- Menu Toogle -->
 								<div class="menu-toggle">
 									<a href="#">
 										<i class="fa fa-bars"></i>
 										<span>Menu</span>
 									</a>
 								</div>
-								<!-- /Menu Toogle -->
 							</div>
 						</div>
 					</div>
@@ -127,7 +122,6 @@
 			</div>
 		</header>
 		<!-- /HEADER -->
-
 
 		<!-- NAVIGATION -->
 		<nav id="navigation">
@@ -142,122 +136,68 @@
 		</nav>
 		<!-- /NAVIGATION -->
 
+<!--------------------------------------------------------------------------------------------------->
 
-<!----------------------------------------------------------------------------------------------------->
+		<!-- BREADCRUMB -->
+		<div id="breadcrumb" class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h3 class="breadcrumb-header">Crear Producto</h3>
+						<ul class="breadcrumb-tree">
+							<li><a href="index.html">Home</a></li>
+							<li class="active">Crear Producto</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /BREADCRUMB -->
+
+<!--------------------------------------------------------------------------------------------------->
 
 		<!-- SECTION -->
 		<div class="section">
 			<div class="container">
 				<div class="row">
-
-					<!-- Ofertas -->
-					<div class="col-md-12">
-						<div class="section-title">
-							<h3 class="title">Ofertas</h3>
-						</div>
-					</div>
-					<!-- /Ofertas -->
-
-					<!-- Listado de Productos -->
-					<div class="col-md-12">
-						<div class="row">
-							<div class="products-tabs">
-								<div id="tab1" class="tab-pane active">
-									<div id="listadoOfertas" class="products-slick" data-nav="#slick-nav-1">
-
-										<!-- Producto -->
-										<div class="product">
-											<div class="product-img">
-												<img src="./img/product01.png" alt="">
-												<div class="product-label">
-													<span class="sale">-30%</span>
-													<span class="new">NEW</span>
-												</div>
-											</div>
-											<div class="product-body">
-												<p class="product-category">Category</p>
-												<h3 class="product-name"><a href="#">product name goes here</a></h3>
-												<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-											</div>
-											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Agregar al Carrito</button>
-											</div>
-										</div>
-										<!-- /Producto -->
-
-									</div>
-									<div id="slick-nav-1" class="products-slick-nav"></div>
-								</div>
+					<div class="col-md-7">
+						<div class="billing-details">
+							<div class="section-title">
+								<h3 class="title">Nuevo Producto</h3>
 							</div>
-						</div>
-					</div>
-					<!-- /Listado de Productos -->
 
+							<div class="form-group">
+								<input id="nombre" class="input" type="text" name="nombre" placeholder="Nombre">
+							</div>
+
+							<div class="form-group">
+								<input id="precio" class="input" type="text" name="precio" placeholder="Precio">
+							</div>
+
+							<div class="form-group">
+								<select id="categoria" class="input">
+									<option>Seleccionar una
+									<option>Laptops
+									<option>Camaras
+									<option>Fundas
+								</select>
+							</div>
+
+							<div class="form-group">
+								<input id="foto" class="input" type="file" name="file" placeholder="Archivo">
+							</div>
+
+							<div class="add-to-cart">
+								<button class="add-to-cart-btn" onclick="setNewProduct()">Agregar Producto</button>
+							</div>
+
+					</div>
 				</div>
 			</div>
 		</div>
 		<!-- /SECTION -->
 
-<!----------------------------------------------------------------------------------------------------->
-
-		<!-- SECTION -->
-		<div class="section">
-			<div class="container">
-				<div class="row">
-
-					<!-- Productos -->
-					<div class="col-md-12">
-						<div class="section-title">
-							<h3 class="title">Productos</h3>
-							<div class="section-nav">
-								<ul class="section-tab-nav tab-nav">
-									<li class="active"><a data-toggle="tab" href="#tab2">Laptops</a></li>
-									<li><a data-toggle="tab" href="#tab2">Smartphones</a></li>
-									<li><a data-toggle="tab" href="#tab2">Cameras</a></li>
-									<li><a data-toggle="tab" href="#tab2">Accessories</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<!-- /Productos -->
-
-					<!-- Listado de Productos -->
-					<div class="col-md-12">
-						<div class="row">
-							<div class="products-tabs">
-								<!-- tab -->
-								<div id="tab2" class="tab-pane fade in active">
-									<div id="listadoProductos" class="products-slick" data-nav="#slick-nav-2">
-
-										<!-- Producto-->
-										<!--div class="product">
-											<div class="product-img">
-												<img src="./img/product06.png" alt="">
-											</div>
-											<div class="product-body">
-												<p class="product-category">Category</p>
-												<h3 class="product-name"><a href="#">product name goes here</a></h3>
-												<h4 class="product-price">$980.00</h4>
-											</div>
-											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Agregar al Carrito</button>
-											</div>
-										</div-->
-										<!-- /Producto -->
-
-									</div>
-									<div id="slick-nav-2" class="products-slick-nav"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- /Listado de Productos -->
-				</div>
-			</div>
-		</div>
-		<!-- /SECTION -->
-
-<!----------------------------------------------------------------------------------------------------->
+<!--------------------------------------------------------------------------------------------------->
 
 		<!-- FOOTER -->
 		<footer id="footer">
