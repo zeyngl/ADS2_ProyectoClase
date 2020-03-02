@@ -1,1 +1,32 @@
-<p>product works!</p>
+<div class="container">
+	<div class="row">
+		<div class="col"></div>
+		<div class="col">
+			<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+				<div class="form-group" [ngClass]="{ 'has-error': invalidName() }">
+					<label for="name" class="control-label">Nombre</label>
+					<input type="text" formControlName="name" class="form-control" id="name" name="name"
+						placeholder="Nombre del producto" [(ngModel)]="product.name">
+					<p *ngIf="invalidName()" id="name_error" class="help-block">Invalid name.</p>
+				</div>
+
+				<div class="form-group" [ngClass]="{ 'has-error': invalidUnitPrice() }">
+					<label for="unit_price" class="control-label">Precio unitario</label>
+					<input type="number" formControlName="unit_price" class="form-control" id="unit_price"
+						name="unit_price" placeholder="Precio" [(ngModel)]="product.unit_price">
+					<p *ngIf="invalidUnitPrice()" id="unit_price_error" class="help-block">Invalid unit price.</p>
+				</div>
+
+				<select class="field form-control" [(ngModel)]="product.categ_id" [ngModelOptions]="{standalone: true}">
+					<option *ngFor="let categ of categories" [value]="categ.id">{{categ.name}}</option>
+				</select>
+				<br/>
+
+				<div class="form-group has-error">
+					<button type="submit" class="btn btn-primary">Register</button>
+				</div>
+			</form>
+		</div>
+		<div class="col"></div>
+	</div>
+</div>

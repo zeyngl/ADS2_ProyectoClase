@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductModel } from '../../models/ProductModel';
 import { ProductCategoryModel } from '../../models/ProductCategoryModel';
 import { ApiService } from '../../services/api.service';
+import { RouterLinkWithHref } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -9,13 +10,7 @@ import { ApiService } from '../../services/api.service';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-  categories: any = [
-    /*new ProductCategoryModel({ id: 1, name: "Laptops" }),
-    new ProductCategoryModel({ id: 2, name: "Smartphones" }),
-    new ProductCategoryModel({ id: 3, name: "Cameras" }),
-    new ProductCategoryModel({ id: 4, name: "Accesories" }),*/
-  ];
-
+  categories: any = [];
   products: any = [];
 
   constructor(private apiService: ApiService) { }
@@ -36,6 +31,11 @@ export class ProductListComponent implements OnInit {
       },
       err => console.error(err)
     );
+  }
+
+  newProduct(): void{
+    alert("click");
+    
   }
 
 }

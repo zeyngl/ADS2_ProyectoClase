@@ -12,13 +12,20 @@ export class ApiService {
   getProducts() {
     return this.http.get(`${this.API_URI}products`);
   }
+  getProduct(product_id) {
+    return this.http.get(`${this.API_URI}products/${product_id}`);
+  }
 
   saveProduct(product) {
     return this.http.post(`${this.API_URI}products`, product);
   }
 
+  createProduct(product) {
+    return this.http.put(`${this.API_URI}products`, product);
+  }
+
   getCategories() {
-    return this.http.get(`${this.API_URI}products/categories`);
+    return this.http.get(`${this.API_URI}product_categories`);
   }
 
   subscribeCourse(course) {

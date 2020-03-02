@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { Routes, RouterModule } from "@angular/router";
 
 import { AppComponent } from './app.component';
 import { InputUserDataFormComponent } from './components/input-user-data-form/input-user-data-form.component';
@@ -18,6 +19,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ProductComponent } from './components/product/product.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './services/api.service';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { ApiService } from './services/api.service';
     HeaderComponent,
     TopFooterComponent,
     BottomFooterComponent,
-    ProductComponent
+    ProductComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

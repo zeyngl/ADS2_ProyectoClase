@@ -56,6 +56,22 @@ app.get('/products', (req, res) => {
   });
 });
 
+app.get('/products/:id', (req, res) => {
+  let query_script = `
+  SELECT 
+    p.*, 
+    c.id as categ_id, 
+    c.name as categ_name 
+  FROM product p
+    LEFT JOIN product_category c ON p.categ_id = c.id
+  WHERE p.id = ?`;
+
+  conn.query(query_script, [req.params.id], function (err, result) {
+    if (err) throw err;
+    res.send(result);
+  });
+});
+
 app.post('/products', (req, res) => {
   let body = req.body;
   conn.query('INSERT INTO product(name, unit_price, categ_id) VALUES(?,?,?)', [body.name, body.unit_price, body.categ_id], function (err, result) {
@@ -64,7 +80,15 @@ app.post('/products', (req, res) => {
   });
 });
 
-app.get('/products/categories', (req, res) => {
+app.put('/products', (req, res) => {
+  let body = req.body;
+  conn.query('UPDATE product SET name=?, unit_price=?, categ_id=? WHERE id=?', [body.name, body.unit_price, body.categ_id, body.id], function (err, result) {
+    if (err) throw err;
+    res.send(result);
+  });
+});
+
+app.get('/product_categories', (req, res) => {
   conn.query('SELECT * FROM product_category', function (err, result) {
     if (err) throw err;
     res.send(result);
