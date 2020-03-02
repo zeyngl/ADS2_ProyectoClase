@@ -1,3 +1,77 @@
-<ul>
-  <app-user *ngFor="let user of users" [nameUser]="user"></app-user>
-</ul>
+
+<datalist id="categories"> 
+  <option *ngFor='let categoria of categorias'>{{categoria}}</option>  
+</datalist>
+
+
+<div class="w3-container w3-blue w3-xlarge">
+  <h2 class="w3-xxlarge">Agregar Nuevo Producto</h2>
+</div>
+
+<form (submit)="addProduct(producto,categoria,precio)" class="w3-container w3-lobster">
+  <label for="producto" class="w3-xlarge">Nombre del producto</label>
+  <input type="text" class="w3-input" #producto><br/>
+  <label for="categoria" class="w3-xlarge">Categoria</label>
+  <input list="categories" class="w3-input" #categoria><br/>
+  <label for="precio" class="w3-xlarge">Precio</label>
+  <input type="number" class="w3-input" step="0.01" #precio><br/>
+  <button class="button button1 w3-xlarge">
+    Almacenar Producto
+  </button>
+</form>
+<div class="w3-container w3-lobster">  
+  <p class="w3-xxxlarge">Base de datos principal</p>
+</div>
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Categoria</th>
+    <th>Precio</th>
+  </tr>
+  <tr *ngFor="let producto of fullElements">
+    <td>{{producto.Nombre}}</td>
+    <td>{{producto.Categoria}}</td>
+    <td>{{producto.Precio}}</td>    
+  </tr>
+</table>
+
+<div class="w3-container w3-lobster">  
+  <p class="w3-xxxlarge">Cola de espera</p>
+</div>
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Categoria</th>
+    <th>Precio</th>
+  </tr>
+  <tr *ngFor="let producto of queueElements">
+    <td>{{producto.Nombre}}</td>
+    <td>{{producto.Categoria}}</td>
+    <td>{{producto.Precio}}</td>    
+  </tr>
+</table>
+
+<div class="w3-container w3-lobster">  
+  <p class="w3-xxxlarge">Base de datos de lectura</p>
+</div>
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Categoria</th>
+    <th>Precio</th>
+  </tr>
+  <tr *ngFor="let producto of readElements">
+    <td>{{producto.Nombre}}</td>
+    <td>{{producto.Categoria}}</td>
+    <td>{{producto.Precio}}</td>    
+  </tr>
+</table>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+
+
+

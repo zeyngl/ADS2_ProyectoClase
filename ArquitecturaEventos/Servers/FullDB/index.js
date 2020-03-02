@@ -26,12 +26,17 @@ app.post('/producto', (req, res) => {
             console.log("We are connected");
             var dbo = db.db("AD2");
             dbo.collection("FullDB").insertOne(registro, function (err, res) {
-                if (!err) {
-                    console.log("1 document inserted");                    
-                    db.close();
-                    insertIntoQueue(registro);
+                if (err) {                    
+                    console.log('Error en Queue');
                 }
             });
+            dbo.collection("Queue").insertOne(registro, function (err, res) {
+                if (!err) {                                                           
+                    db.close();                        
+                }else{
+                    console.log('Error en Queue');
+                }
+            });           
 
         }
     });
@@ -84,16 +89,32 @@ function insertIntoQueue(registro){
     });
 }
 
-/**Obtiene el listado de los elementos en cola */
+/**Obtiene el listado de los elementos en cola y los elimina posteriormente*/
 app.get('/Queue', (req, res) => {        
+    MongoClient.connect("mongodb+srv://Lizama:Micronpe.-1@proyectoarqui-ydupz.gcp.mongodb.net/test?retryWrites=true", { useNewUrlParser: true }, function (err, db) {
+        if (err) throw err;
+        var dbo = db.db("AD2");
+        dbo.collection("Queue").find({}).toArray(function (err, result) {
+            if (err) throw err;            
+            res.status(200).send(JSON.stringify(result));            
+        });
+        dbo.collection("Queue").deleteMany({}, function (err, obj) {
+            if (err) throw err;
+            console.log(obj.result.n + " document(s) deleted");
+            db.close();                
+        });
+    });
+});
+
+/**Obtiene el listado de los elementos en cola y los elimina posteriormente*/
+app.get('/QueueRead', (req, res) => {        
     MongoClient.connect("mongodb+srv://Lizama:Micronpe.-1@proyectoarqui-ydupz.gcp.mongodb.net/test?retryWrites=true", { useNewUrlParser: true }, function (err, db) {
         if (err) throw err;
         var dbo = db.db("AD2");
         dbo.collection("Queue").find({}).toArray(function (err, result) {
             if (err) throw err;
             db.close();
-            res.status(200).send(JSON.stringify(result));
-            clearQueue(null);
+            res.status(200).send(JSON.stringify(result));            
         });
     });
 });

@@ -7,11 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientComponent implements OnInit {
 
-  title = "Arquitectura orientada a servicios"
+  name: string;
 
-  constructor() { }
+  constructor() { 
+    this.name="Luis";
+  }
 
   ngOnInit(): void {
-  }
+    
+  }  
 
 }
