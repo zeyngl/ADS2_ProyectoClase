@@ -20,15 +20,15 @@ export class AppComponent {
 
 
   updateComponents(): void {
-    this.http.get('http://localhost:3000/producto').subscribe((res: any) => {
+    this.http.get('http://18.234.204.103:3000/producto').subscribe((res: any) => {
       console.log(res);
       this.fullElements = res;
     })
-    this.http.get('http://localhost:3000/QueueRead').subscribe((res: any) => {
+    this.http.get('http://18.234.204.103:3000/QueueRead').subscribe((res: any) => {
       console.log(res);
       this.queueElements = res;
     })
-    this.http.get('http://localhost:4000/producto').subscribe((res: any) => {
+    this.http.get('http://18.234.204.103:4000/producto').subscribe((res: any) => {
       console.log(res);
       this.readElements = res;
     })
@@ -67,7 +67,7 @@ export class AppComponent {
   */
   addProduct(producto, categoria, precio) {
     console.log('Enviando datos...');
-    this.http.post('http://localhost:3000/producto', { nombre: producto.value, categoria: categoria.value, precio: precio.value }).toPromise().then(data => {
+    this.http.post('http://18.234.204.103:3000/producto', { nombre: producto.value, categoria: categoria.value, precio: precio.value }).toPromise().then(data => {
       console.log(data);
     });
     producto.value="";
