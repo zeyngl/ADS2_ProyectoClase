@@ -20,15 +20,15 @@ export class AppComponent {
 
 
   updateComponents(): void {
-    this.http.get('http://18.234.204.103:3000/producto').subscribe((res: any) => {
+    this.http.get('http://34.203.233.158:3000/producto').subscribe((res: any) => {
       console.log(res);
       this.fullElements = res;
     })
-    this.http.get('http://18.234.204.103:3000/QueueRead').subscribe((res: any) => {
+    this.http.get('http://34.203.233.158:3000/QueueRead').subscribe((res: any) => {
       console.log(res);
       this.queueElements = res;
     })
-    this.http.get('http://18.234.204.103:4000/producto').subscribe((res: any) => {
+    this.http.get('http://34.203.233.158:4000/producto').subscribe((res: any) => {
       console.log(res);
       this.readElements = res;
     })
