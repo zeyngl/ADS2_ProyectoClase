@@ -67,7 +67,7 @@ export class AppComponent {
   */
   addProduct(producto, categoria, precio) {
     console.log('Enviando datos...');
-    this.http.post('http://18.234.204.103:3000/producto', { nombre: producto.value, categoria: categoria.value, precio: precio.value }).toPromise().then(data => {
+    this.http.post('http://34.203.233.158:3000/producto', { nombre: producto.value, categoria: categoria.value, precio: precio.value }).toPromise().then(data => {
       console.log(data);
     });
     producto.value="";
