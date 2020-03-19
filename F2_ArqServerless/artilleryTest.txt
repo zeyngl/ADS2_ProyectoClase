@@ -1,0 +1,13 @@
+Para poder realizar pruebas de estres podemos ver como funciona
+con las funciones lambda individualmente para lo cual tuvimos que
+instalar artillery una herramienta que nos proporciona fakes para
+hacer peticiones y debemos instalarlo con:
+
+>>> npm install -g artillery
+
+Vamos a probar la funcion lambda getProducts ya que es la que tiene
+una peticion GET asociada y no recibe ningun parametro.
+
+>>> artillery quick --count 5 -n 10 https://h2uagtj6na.execute-api.us-east-2.amazonaws.com/version1
+
+De esta manera podemos generar pruebas de estres automatizadas.
