@@ -1,4 +1,17 @@
+function session(){
+    var sucess = sessionStorage.getItem("user-nit");
+    if(sucess == null){
+        window.location.href = "login.html";
+    }
+
+    var nit = document.getElementById("nit");
+    nit.value = sucess;
+}
+
+
 function connection(){
+    session();
+
     var url = 'https://h2uagtj6na.execute-api.us-east-2.amazonaws.com/version1';
 
     fetch(url, {
@@ -16,6 +29,7 @@ function addProducts(data){
     var lista = document.getElementById('listadoProductos');
 
     toJSON.forEach(function(element) {
+        //id del producto
         var divproducto = document.createElement("div");
         divproducto.setAttribute("class","product");
         divproducto.setAttribute('id',element.id.N);
@@ -62,6 +76,9 @@ function addProducts(data){
         var button1 = document.createElement("button");
         button1.setAttribute("class","add-to-cart-btn");
         button1.setAttribute('id',element.id.N);
+        var namebtn=element.id.N+","+element.categoria.S+","+element.nombre.S+","+element.precio.S;
+        button1.setAttribute('name',namebtn);
+        button1.setAttribute('onclick','agregarCarrito(this);');
         button1.innerHTML = "Agregar al Carrito";
         button1.innerText = "Agregar al Carrito";
 
@@ -79,4 +96,39 @@ function addProducts(data){
     });
 
     return '200';
+}
+
+
+function agregarCarrito(producto){
+    var datos = producto.getAttribute("name");
+    var array = datos.split(",");
+
+    var f = new Date();
+    var date = f.getFullYear() +""+ (f.getMonth() +1) +""+ f.getDate();//YYYYMMDD
+
+    var idcliente = 0;//falta obtenerlo
+
+    var data = {
+        fecha: parseInt(date,"10"),
+        cliente: idcliente,
+        id: array[0],
+        categoria: array[1],
+        nombre: array[2],
+        precio: array[3]
+    };
+
+    var json = JSON.parse(JSON.stringify(data));
+
+    //enviamos las compras a la bade de datos mongo
+    var url = 'falta especificar la url';
+
+    fetch(url, {
+    method: 'POST',
+    body: JSON.stringify(json),
+    headers:{
+        'Accept': 'application/json'
+    }
+    }).then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(response => console.log('Success:', response));
 }

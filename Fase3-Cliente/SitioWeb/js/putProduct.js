@@ -1,3 +1,20 @@
+function session(){
+    var sucess = sessionStorage.getItem("user-nit");
+
+    if(sucess == null){
+        window.location.href = "login.html";
+    }
+    
+    if(sucess != "00000-0"){
+        window.location.href = "index.html";
+    }
+}
+
+
+function init(){
+    session();
+}
+
 function setNewProduct(){
     let nombre = document.getElementById("nombre").value;
     let precio = document.getElementById("precio").value;

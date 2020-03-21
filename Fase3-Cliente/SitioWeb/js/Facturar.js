@@ -1,5 +1,18 @@
+function session(){
+    var sucess = sessionStorage.getItem("user-nit");
+    if(sucess == null){
+        window.location.href = "login.html";
+    }
+
+    var nit = document.getElementById("nit");
+    nit.value = sucess;
+}
+
+
 function obtener(){
-    var url = '';
+    session();
+
+    var url = 'falta especificar la url';
 
     fetch(url, {
     method: 'GET',
@@ -10,6 +23,7 @@ function obtener(){
     .catch(error => console.error('Error:', error))
     .then(response => console.log('Success:', addProducts(response)));
 }
+
 
 function addProducts(data){
     var toJSON = JSON.parse(JSON.stringify(data));
@@ -28,7 +42,7 @@ function addProducts(data){
     });
 
     tbody.innerHTML = HTML;
-    inputTotal.value = total.toString();
+    inputTotal.value = total;
 
     return '200';
 }
@@ -38,10 +52,10 @@ function addProducts(data){
 function facturar(){
     var doc = new jsPDF();
 
-    var nombre = document.getElementById("nombre").value;
+    var nit = document.getElementById("nit").value;
     var total = document.getElementById("total").value;
     
-    var elementHTML = "<h3>Cliente: "+nombre+"</h3>\n"+
+    var elementHTML = "<h3>Nit Cliente: "+nit+"</h3>\n"+
     "<h3>Total: "+total+"</h3><br><br><br>\n"+ $('#divfactura').html();
 
     var specialElementHandlers = {

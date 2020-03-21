@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>Agregar Productos</title>
+
+ 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+ 		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
+ 		<link type="text/css" rel="stylesheet" href="css/slick.css"/>
+ 		<link type="text/css" rel="stylesheet" href="css/slick-theme.css"/>
+ 		<link type="text/css" rel="stylesheet" href="css/nouislider.min.css"/>
+ 		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<link type="text/css" rel="stylesheet" href="css/style.css"/>
+		<script src="js/Perfil.js"></script> 
+  </head>
+	<body onload="session()">
+
+		<!-- HEADER -->
+		<header>
+			<div id="top-header">
+				<div class="container">
+					<ul class="header-links pull-right">
+						<li><a href="perfil.html"><i class="fa fa-user-o"></i> Mi Cuenta</a></li>
+					</ul>
+				</div>
+			</div>
+			
+			<div id="header">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-3">
+							<div class="header-logo">
+								<a href="#" class="logo">
+									<img src="./img/logo.png" alt="">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<!-- /HEADER -->
+
+<!--------------------------------------------------------------------------------------------------->
+
+		<!-- NAVIGATION -->
+		<nav id="navigation">
+			<div class="container">
+				<div id="responsive-nav">
+					<ul class="main-nav nav navbar-nav">
+						<li><a href="index.html">Home</a></li>
+						<li><a href="agregar.html">Crear Producto</a></li>
+						<li><a href="factura.html">Facturacion</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<!-- /NAVIGATION -->
+
+<!--------------------------------------------------------------------------------------------------->
+
+		<!-- SECTION -->
+		<div class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-7">
+						<div class="billing-details">
+							<div class="section-title">
+								<h3 class="title">Mis Datos</h3>
+							</div>
+
+							<div class="form-group">
+								<input id="nit" class="input" type="text" name="nit" placeholder="NIT" readonly="readonly">
+							</div>
+
+							<div class="form-group">
+								<input id="nombre" class="input" type="text" name="nombre" placeholder="Nombre">
+							</div>
+
+							<div class="section-title">
+								<h4 class="title">Cambiar Contraseña</h4>
+							</div>
+
+							<div class="form-group">
+								<input id="contra" class="input" type="text" name="contra" placeholder="Contraseña">
+							</div>
+
+							<div class="form-group">
+								<input id="contra-nueva" class="input" type="text" name="contra-nueva" placeholder="Nueva Contraseña">
+							</div>
+
+							<div class="add-to-cart">
+								<button class="add-to-cart-btn" onclick="change_data()">Guardar Informacion</button>
+							</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /SECTION -->
+
+<!--------------------------------------------------------------------------------------------------->
+
+		<!-- FOOTER -->
+		<footer id="footer">
+			<div id="bottom-footer" class="section">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<ul class="footer-payments">
+								<li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
+								<li><a href="#"><i class="fa fa-credit-card"></i></a></li>
+								<li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>
+								<li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
+								<li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
+								<li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- /FOOTER -->
+
+		<!-- jQuery Plugins -->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/slick.min.js"></script>
+		<script src="js/nouislider.min.js"></script>
+		<script src="js/jquery.zoom.min.js"></script>
+		<script src="js/main.js"></script>
+	</body>
+</html>
