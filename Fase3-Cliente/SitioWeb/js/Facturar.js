@@ -12,10 +12,23 @@ function session(){
 function obtener(){
     session();
 
+    var f = new Date();
+    var date = f.getFullYear() +""+ (f.getMonth() +1) +""+ f.getDate();//YYYYMMDD
+
+    var idcliente = sessionStorage.getItem("user-nit");
+
+    var data = {
+        fecha: parseInt(date,"10"),
+        nit: idcliente
+    };
+
+    var json = JSON.parse("{ \"registro\":"+JSON.stringify(data)+"}");
+
     var url = 'falta especificar la url';
 
     fetch(url, {
-    method: 'GET',
+    method: 'POST',
+    body: JSON.parse(JSON.stringify(json)),
     headers:{
         'Accept': 'application/json'
     }

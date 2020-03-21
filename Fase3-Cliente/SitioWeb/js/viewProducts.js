@@ -3,14 +3,11 @@ function session(){
     if(sucess == null){
         window.location.href = "login.html";
     }
-
-    var nit = document.getElementById("nit");
-    nit.value = sucess;
 }
 
 
 function connection(){
-    session();
+    //session();
 
     var url = 'https://h2uagtj6na.execute-api.us-east-2.amazonaws.com/version1';
 
@@ -106,25 +103,27 @@ function agregarCarrito(producto){
     var f = new Date();
     var date = f.getFullYear() +""+ (f.getMonth() +1) +""+ f.getDate();//YYYYMMDD
 
-    var idcliente = 0;//falta obtenerlo
+    var idcliente = sessionStorage.getItem("user-nit");
 
     var data = {
-        fecha: parseInt(date,"10"),
-        cliente: idcliente,
-        id: array[0],
-        categoria: array[1],
-        nombre: array[2],
-        precio: array[3]
+        registro : {
+            fecha: parseInt(date,"10"),
+            nit: idcliente,
+            id: array[0],
+            categoria: array[1],
+            nombre: array[2],
+            precio: array[3]
+        }
     };
 
     var json = JSON.parse(JSON.stringify(data));
 
-    //enviamos las compras a la bade de datos mongo
-    var url = 'falta especificar la url';
+    //enviamos las compras a la base de datos mongo
+    var url = 'http://ec2-54-89-91-178.compute-1.amazonaws.com:3000/producto';
 
     fetch(url, {
     method: 'POST',
-    body: JSON.stringify(json),
+    body: json,
     headers:{
         'Accept': 'application/json'
     }
