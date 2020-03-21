@@ -49,7 +49,7 @@ function change_data(){
 
     var json = JSON.parse(JSON.stringify(data));
 
-    //enviamos las compras a la bade de datos mongo
+    //enviamos las compras a la bade de datos relacional
     var url = 'falta especificar la url';
 
     fetch(url, {

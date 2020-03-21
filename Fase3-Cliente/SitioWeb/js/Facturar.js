@@ -15,20 +15,22 @@ function obtener(){
     var f = new Date();
     var date = f.getFullYear() +""+ (f.getMonth() +1) +""+ f.getDate();//YYYYMMDD
 
-    var idcliente = sessionStorage.getItem("user-nit");
+    var nit = document.getElementById("nit").value;
 
     var data = {
-        fecha: parseInt(date,"10"),
-        nit: idcliente
+        registro:{
+            fecha: parseInt(date,"10"),
+            nit: nit
+        }
     };
 
-    var json = JSON.parse("{ \"registro\":"+JSON.stringify(data)+"}");
+    var json = JSON.parse(JSON.stringify(data));
 
     var url = 'falta especificar la url';
 
     fetch(url, {
     method: 'POST',
-    body: JSON.parse(JSON.stringify(json)),
+    body: json,
     headers:{
         'Accept': 'application/json'
     }
@@ -39,7 +41,7 @@ function obtener(){
 
 
 function addProducts(data){
-    var toJSON = JSON.parse(JSON.stringify(data));
+    var toJSON = JSON.parse(JSON.stringify(data)).registro;
     var tbody = document.getElementById('tbody');
     var inputTotal = document.getElementById("total");
 
@@ -59,7 +61,6 @@ function addProducts(data){
 
     return '200';
 }
-
 
 
 function facturar(){
