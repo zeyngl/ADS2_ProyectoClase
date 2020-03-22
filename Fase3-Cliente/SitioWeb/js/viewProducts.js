@@ -105,37 +105,24 @@ function agregarCarrito(producto){
 
     var idcliente = sessionStorage.getItem("user-nit");
 
-    /*var data = {
-        registro : {
+    var data = {
             fecha: parseInt(date,"10"),
             nit: idcliente,
             id: array[0],
             categoria: array[1],
             nombre: array[2],
             precio: array[3]
-        }
     };
 
-    //var json = JSON.parse(JSON.stringify(data));*/
+    var registro_data = {
+        registro: JSON.stringify(data)
+    };
+
+    var json = JSON.parse(JSON.stringify(registro_data));
 
     var url = 'http://ec2-54-89-91-178.compute-1.amazonaws.com:3000/producto';
 
-    $.post(url, {
-        registro : {
-            fecha: parseInt(date,"10"),
-            nit: idcliente,
-            id: array[0],
-            categoria: array[1],
-            nombre: array[2],
-            precio: array[3]
-        }
-    },
-    function(response, state){
-        alert(response);
-    });
-
-
-    /*fetch(url, {
+    fetch(url, {
     method: 'POST',
     body: json,
     headers:{
@@ -143,5 +130,5 @@ function agregarCarrito(producto){
     }
     }).then(res => res.json())
     .catch(error => console.error('Error:', error))
-    .then(response => console.log('Success:', response));*/
+    .then(response => console.log('Success:', response));
 }
