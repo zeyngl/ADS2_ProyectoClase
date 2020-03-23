@@ -1,5 +1,5 @@
 function connection(){
-    var url = 'http://3.12.111.59:4000/products';
+    var url = 'http://localhost:4000/products';
 
     fetch(url, {
     method: 'GET',

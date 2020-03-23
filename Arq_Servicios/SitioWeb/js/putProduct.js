@@ -4,7 +4,7 @@ function setNewProduct(){
     let categoria = document.getElementById("categoria").value;
     
 
-    let url = 'http://3.12.111.59:4000/products';
+    let url = 'http://localhost:4000/products';
         let data =  {
             Nombre: nombre,
             precio: precio,

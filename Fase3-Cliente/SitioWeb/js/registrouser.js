@@ -1,4 +1,20 @@
+function loading(){
+  var logueado = sessionStorage.getItem('logueado');
+  if(logueado == 0){
+    sessionStorage.setItem("nitlog", "0");
+    sessionStorage.setItem("tipolog", 2);
+    sessionStorage.setItem("nombrelog","nein");
+    sessionStorage.setItem("logueado", 0);//true or false
+  }else{
+    var tipo = sessionStorage.getItem('tipolog');
+    if(tipo==0){
+      //redirigir a administrador
+    }else {
+      //redirigir a comprador
+    }
+  }
 
+}
 function setNewUser(){
   let dpi = document.getElementById("dpi").value;
   let nombre = document.getElementById("nombre").value;

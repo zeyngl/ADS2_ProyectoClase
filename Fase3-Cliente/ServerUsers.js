@@ -55,7 +55,7 @@ app.get('/loginlista', (req, res) => {
 
 app.get('/buscarcorreo/', function (req, res) {
     var ext = req.query.ext;
-    var sql = "SELECT id as id,pass as pass, tipouser as tipo FROM Fase2.Usuario WHERE correo='"+ext+"';";
+    var sql = "SELECT id as id,nombre as nombre, pass as pass, nit as nit, tipouser as tipo FROM Fase2.Usuario WHERE nit  ='"+ext+"';";
     con.query(sql, function (err, result) {
         if (err) console.log(err);
         console.log(result)
@@ -63,19 +63,12 @@ app.get('/buscarcorreo/', function (req, res) {
     });
 });
 
-
 app.post('/registro', (req, res) => {
     console.log(req.body);
-    console.log(req.body.dpi);
-    console.log(req.body.nombre);
-    console.log(req.body.correo);
-    console.log(req.body.pass);
-    console.log(req.body.direccion);
-    console.log(req.body.fecha);
     if (req.body.dpi && req.body.nombre && req.body.correo && req.body.pass && req.body.direccion && req.body.fecha) {
         console.log('Request received');
         con.connect(function(err) {
-            con.query(`INSERT INTO Fase2.Usuario(dpi,nombre,correo,direccion,pass,nacimiento,tipouser) VALUES ('${req.body.dpi}', '${req.body.nombre}', '${req.body.correo}', '${req.body.pass}', '${req.body.direccion}', '${req.body.fecha}',1)`, function(err, result, fields) {
+            con.query(`INSERT INTO Fase2.Usuario(nit,nombre,correo,pass,direccion,nacimiento,tipouser) VALUES ('${req.body.dpi}', '${req.body.nombre}', '${req.body.correo}', '${req.body.pass}', '${req.body.direccion}', '${req.body.fecha}',1)`, function(err, result, fields) {
                 if (err) console.log(err);
                 if (result) res.send({dpi: req.body.dpi, nombre: req.body.nombre, correo: req.body.correo, pass: req.body.pass, direccion: req.body.direccion, fecha: req.body.fecha});
                 if (fields) console.log(fields);
@@ -85,7 +78,6 @@ app.post('/registro', (req, res) => {
         console.log('Missing a parameter');
     }
 });
-
 
 app.listen(4000, function () {
   console.log('Example app listening on port 4000!');

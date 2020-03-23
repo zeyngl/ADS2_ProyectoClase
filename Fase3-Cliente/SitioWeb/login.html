@@ -16,7 +16,7 @@
 		<link type="text/css" rel="stylesheet" href="css/style.css"/>
 		<script src="js/loginuser.js"></script>
   </head>
-	<body >
+	<body onload="loading()">
 		<header>
 
 			<div id="top-header">
@@ -58,9 +58,9 @@
     <h2><font style="color:white">Login</font></h2>
 
         <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
-            <label for="username"><font style="color:white">Username</font></label>
+            <label for="username"><font style="color:white">Número de NIT</font></label>
             <input type="text" name="username" id="username" class="form-control" ng-model="vm.username" required />
-            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
+            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">NIT is required</span>
         </div>
         <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
             <label for="password"><font style="color:white">Password</font></label>
