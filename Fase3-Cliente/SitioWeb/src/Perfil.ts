@@ -1,6 +1,7 @@
 import { Conection } from "./Conection";
+import { changeData } from "./changeData";
 
-class Perfil extends Conection {
+class Perfil extends Conection implements changeData {
 
     session(): void {
         var nitsuccess = sessionStorage.getItem("user-nit");

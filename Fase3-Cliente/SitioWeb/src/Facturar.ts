@@ -1,7 +1,8 @@
 import { Conection } from "./Conection";
 import { addProduct } from "./addProduct";
+import { createBill } from "./createBill";
 
-class Facturar extends Conection implements addProduct{
+class Facturar extends Conection implements addProduct, createBill{
 
     session(): void {
         var nitsuccess = sessionStorage.getItem("user-nit");

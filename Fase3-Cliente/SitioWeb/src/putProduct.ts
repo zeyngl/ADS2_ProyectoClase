@@ -1,6 +1,8 @@
 import { Conection } from "./Conection";
+import { newProduct } from "./newProduct";
+import { Cleaner } from "./Cleaner";
 
-class putProduct extends Conection {
+class putProduct extends Conection implements newProduct,Cleaner {
     
     session(): void {
         var nitsuccess = sessionStorage.getItem("user-nit");

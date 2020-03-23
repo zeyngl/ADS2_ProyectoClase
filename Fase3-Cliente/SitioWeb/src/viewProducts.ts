@@ -1,7 +1,8 @@
 import { Conection } from "./Conection";
 import { addProduct } from "./addProduct";
+import { addToCart } from "./addToCart";
 
-class viewProducts extends Conection implements addProduct {
+class viewProducts extends Conection implements addProduct,addToCart {
 
     session(): void {
         var nitsuccess = sessionStorage.getItem("user-nit");

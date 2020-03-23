@@ -1,40 +1,35 @@
 
 function loading(){
-  var logueado = sessionStorage.getItem('logueado');
-  if(logueado == 0){
-    sessionStorage.setItem("nitlog", "0");
-    sessionStorage.setItem("tipolog", 2);
-    sessionStorage.setItem("nombrelog","nein");
-    sessionStorage.setItem("logueado", 0);//true or false
+  var logueado = sessionStorage.getItem("user-log");
+  if(logueado == "0"){
+      sessionStorage.setItem("user-nit","0");
+      sessionStorage.setItem("user-type","2");
+      sessionStorage.setItem("user-name","nein");
+      sessionStorage.setItem("user-log", "0");
   }else{
-    var tipo = sessionStorage.getItem('tipolog');
-    if(tipo==0){
-      //redirigir a administrador
-    }else {
-      //redirigir a comprador
-    }
+      window.location.href = "index.html";
   }
-
 }
+
 
 function login(){
   var correo = document.getElementById('username').value;
   var pass = document.getElementById('password').value
   var url ="http://localhost:4000/buscarcorreo/?ext="+correo;
   fetch(url, {
-        method: 'GET',
-        headers:{
-            'Accept': 'application/json'
-        }
-        }).then(res => res.json())
-        .catch(error => console.error('Error:', error))
-        .then(response => console.log('Success:', Users(response,pass)));
+  method: 'GET',
+  headers:{
+      'Accept': 'application/json'
+  }
+  }).then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(response => console.log('Success:', Users(response,pass)));
 }
 
 
 function Users(data,contra){
   if(data.length==0){
-    alert("El usuario no está registrado.");
+    alert("Usuario no Registrado.");
     return false;
   }else{
     var toJSON = data;
@@ -50,21 +45,13 @@ function Users(data,contra){
     });
 
     if (contra == pass){
-      sessionStorage.setItem("nitlog", nit);
-      sessionStorage.setItem("tipolog", tipo);
-      sessionStorage.setItem("nombrelog",nombre);
-      sessionStorage.setItem("logueado", 1);
-      if(tipo==0){
-        //Mandar a los tipo administrador
-        //location.href ="../SitioWeb/registro.html";
-      }else if(tipo==1){
-        //Mandar a los tipo comprador
-        //location.href ="../SitioWeb/registro.html";
-      }
+      sessionStorage.setItem("user-nit",nit);
+      sessionStorage.setItem("user-type",tipo);
+      sessionStorage.setItem("user-name",nombre);
+      sessionStorage.setItem("user-log", "1");
     }else{
-      alert("Password incorrecta")
+      alert("Password Incorrecta.");
       return false;
     }
-
   }
 }
