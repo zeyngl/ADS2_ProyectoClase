@@ -10,38 +10,37 @@ function session(){
 
 
 function obtener(){
-    session();
+    //session();
 
     var f = new Date();
     var date = f.getFullYear() +""+ (f.getMonth() +1) +""+ f.getDate();//YYYYMMDD
 
     var nit = document.getElementById("nit").value;
 
-    var data = {
-        registro:{
+    var datos = {
+        registro: JSON.stringify({
             fecha: parseInt(date,"10"),
-            nit: nit
-        }
+            nit: nit,
+        })
     };
 
-    var json = JSON.parse(JSON.stringify(data));
+    var url = 'http://ec2-54-89-91-178.compute-1.amazonaws.com:3000/factura';
 
-    var url = 'falta especificar la url';
-
-    fetch(url, {
-    method: 'POST',
-    body: json,
-    headers:{
-        'Accept': 'application/json'
-    }
-    }).then(res => res.json())
-    .catch(error => console.error('Error:', error))
-    .then(response => console.log('Success:', addProducts(response)));
+    $.ajax({url,
+        type:'POST',
+        dataType:'json',
+        data: datos,
+        async: false,
+        success: function(response){
+            alert(JSON.stringify(response));
+            addProducts(response);
+        }
+    });
 }
 
 
 function addProducts(data){
-    var toJSON = JSON.parse(JSON.stringify(data)).registro;
+    var toJSON = JSON.parse(JSON.stringify(data));
     var tbody = document.getElementById('tbody');
     var inputTotal = document.getElementById("total");
 
