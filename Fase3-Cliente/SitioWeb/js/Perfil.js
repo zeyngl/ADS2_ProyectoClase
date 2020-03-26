@@ -42,7 +42,9 @@ function change_data(){
         data={
             cambioc: false,
             nit: nit,
-            nombre: name
+            nombre: name,
+            contraAct: "",
+            contraNew: ""
         };
     }
 
