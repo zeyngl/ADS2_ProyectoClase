@@ -5,9 +5,14 @@ function session(){
     }
 }
 
+function logout(){
+    sessionStorage.clear();
+    window.location.href = "login.html";
+}
+
 
 function connection(){
-    //session();
+    session();
 
     var url = 'https://h2uagtj6na.execute-api.us-east-2.amazonaws.com/version1';
 
@@ -124,7 +129,7 @@ function agregarCarrito(producto){
         data: datos,
         async: false,
         success: function(response){
-            alert(JSON.stringify(response));
+            alert("Producto Agregado al Carrito");
         }
     });
 }

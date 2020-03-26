@@ -49,8 +49,7 @@ function change_data(){
 
     var json = JSON.parse(JSON.stringify(data));
 
-    //enviamos las compras a la bade de datos relacional
-    var url = 'falta especificar la url';
+    var url = 'falta especificar la url';//falta implementar
 
     fetch(url, {
     method: 'POST',

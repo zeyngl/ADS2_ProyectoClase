@@ -1,11 +1,6 @@
 function loading(){
-  var logueado = sessionStorage.getItem("user-log");
-  if(logueado == "0"){
-      sessionStorage.setItem("user-nit","0");
-      sessionStorage.setItem("user-type","2");
-      sessionStorage.setItem("user-name","nein");
-      sessionStorage.setItem("user-log", "0");
-  }else{
+  var sucess = sessionStorage.getItem("user-nit");
+  if(sucess != null){
       window.location.href = "index.html";
   }
 }
@@ -21,7 +16,7 @@ function setNewUser(){
 
   if(pass == conf){
 
-    let url = 'http://localhost:4000/registro';
+    let url = 'http://ec2-18-221-147-45.us-east-2.compute.amazonaws.com:4000/registro';
     let data =  {
         dpi: dpi,
         nombre: nombre,

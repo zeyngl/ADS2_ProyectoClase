@@ -10,7 +10,7 @@ function session(){
 
 
 function obtener(){
-    //session();
+    session();
 
     var f = new Date();
     var date = f.getFullYear() +""+ (f.getMonth() +1) +""+ f.getDate();//YYYYMMDD
@@ -32,7 +32,6 @@ function obtener(){
         data: datos,
         async: false,
         success: function(response){
-            alert(JSON.stringify(response));
             addProducts(response);
         }
     });

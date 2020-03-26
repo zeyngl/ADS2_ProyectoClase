@@ -1,21 +1,15 @@
-
 function loading(){
-  var logueado = sessionStorage.getItem("user-log");
-  if(logueado == "0"){
-      sessionStorage.setItem("user-nit","0");
-      sessionStorage.setItem("user-type","2");
-      sessionStorage.setItem("user-name","nein");
-      sessionStorage.setItem("user-log", "0");
-  }else{
+  var sucess = sessionStorage.getItem("user-nit");
+  if(sucess != null){
       window.location.href = "index.html";
   }
 }
 
 
 function login(){
-  var correo = document.getElementById('username').value;
+  var correo = document.getElementById('username').value;//realmente es el nit
   var pass = document.getElementById('password').value
-  var url ="http://localhost:4000/buscarcorreo/?ext="+correo;
+  var url ="http://ec2-18-221-147-45.us-east-2.compute.amazonaws.com:4000/buscarcorreo/?ext="+correo;
   fetch(url, {
   method: 'GET',
   headers:{
@@ -49,6 +43,8 @@ function Users(data,contra){
       sessionStorage.setItem("user-type",tipo);
       sessionStorage.setItem("user-name",nombre);
       sessionStorage.setItem("user-log", "1");
+      window.location.href = "index.html";
+      return true;
     }else{
       alert("Password Incorrecta.");
       return false;
