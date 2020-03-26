@@ -63,6 +63,17 @@ app.get('/buscarcorreo/', function (req, res) {
     });
 });
 
+app.get('/buscardatos/', function (req, res) {
+    var ext = req.query.ext;
+    var sql = "SELECT nombre as nombre, pass as pass, nit as nit, correo as correo, date_format(nacimiento,\"%Y-%m-%d\") as fecha, direccion as direccion FROM Fase2.Usuario WHERE nit  ='"+ext+"';";
+    console.log(sql)
+    con.query(sql, function (err, result) {
+        if (err) console.log(err);
+        console.log(result)
+        res.send(result);//devolvemos que si encontro por lo menos 1
+    });
+});
+
 app.post('/registro', (req, res) => {
     console.log(req.body);
     if (req.body.dpi && req.body.nombre && req.body.correo && req.body.pass && req.body.direccion && req.body.fecha) {
@@ -71,6 +82,48 @@ app.post('/registro', (req, res) => {
             con.query(`INSERT INTO Fase2.Usuario(nit,nombre,correo,pass,direccion,nacimiento,tipouser) VALUES ('${req.body.dpi}', '${req.body.nombre}', '${req.body.correo}', '${req.body.pass}', '${req.body.direccion}', '${req.body.fecha}',1)`, function(err, result, fields) {
                 if (err) console.log(err);
                 if (result) res.send({dpi: req.body.dpi, nombre: req.body.nombre, correo: req.body.correo, pass: req.body.pass, direccion: req.body.direccion, fecha: req.body.fecha});
+                if (fields) console.log(fields);
+            });
+        });
+    } else {
+        console.log('Missing a parameter');
+    }
+});
+
+app.post('/updatedatos', (req, res) => {
+    console.log(req.body);
+    if (req.body.nit && req.body.nombre && req.body.correo && req.body.direccion && req.body.fecha) {
+        console.log('Request received');
+        con.connect(function(err) {
+          var sql=`UPDATE Fase2.Usuario
+          SET nombre='${req.body.nombre}',
+          correo ='${req.body.correo}',
+          direccion ='${req.body.direccion}',
+          nacimiento ='${req.body.fecha}'
+          WHERE nit='${req.body.nit}';`
+            con.query(sql, function(err, result, fields) {
+                if (err) console.log(err);
+                if (result) res.send({nit: req.body.nit});
+                if (fields) console.log(fields);
+            });
+        });
+    } else {
+        console.log('Missing a parameter');
+    }
+});
+
+
+app.post('/cambiarpass', (req, res) => {
+    console.log(req.body);
+    if (req.body.nit && req.body.pass) {
+        console.log('Request received');
+        con.connect(function(err) {
+          var sql=`UPDATE Fase2.Usuario
+          SET pass='${req.body.pass}'
+           WHERE nit='${req.body.nit}';`
+            con.query(sql, function(err, result, fields) {
+                if (err) console.log(err);
+                if (result) res.send({nit: req.body.nit});
                 if (fields) console.log(fields);
             });
         });

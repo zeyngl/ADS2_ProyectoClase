@@ -9,7 +9,7 @@ function loading(){
 function login(){
   var correo = document.getElementById('username').value;//realmente es el nit
   var pass = document.getElementById('password').value
-  var url ="http://ec2-18-221-147-45.us-east-2.compute.amazonaws.com:4000/buscarcorreo/?ext="+correo;
+  var url ="http://ec2-13-58-107-174.us-east-2.compute.amazonaws.com:4000/buscarcorreo/?ext="+correo;
   fetch(url, {
   method: 'GET',
   headers:{

@@ -14,9 +14,9 @@
  		<link type="text/css" rel="stylesheet" href="css/nouislider.min.css"/>
  		<link rel="stylesheet" href="css/font-awesome.min.css">
 		<link type="text/css" rel="stylesheet" href="css/style.css"/>
-		<script src="js/Perfil.js"></script> 
+		<script src="js/Perfil.js"></script>
   </head>
-	<body onload="session()">
+	<body onload="loaddata()">
 
 		<!-- HEADER -->
 		<header>
@@ -27,7 +27,7 @@
 					</ul>
 				</div>
 			</div>
-			
+
 			<div id="header">
 				<div class="container">
 					<div class="row">
@@ -73,11 +73,31 @@
 							</div>
 
 							<div class="form-group">
-								<input id="nit" class="input" type="text" name="nit" placeholder="NIT" readonly="readonly">
+								<label for="nit">NIT:</label>
+								<input id="nit" class="input" type="text" name="nit" placeholder="NIT" readonly="readonly" disabled>
 							</div>
 
 							<div class="form-group">
+								<label for="nombre">Name:</label>
 								<input id="nombre" class="input" type="text" name="nombre" placeholder="Nombre">
+							</div>
+
+							<div class="form-group">
+								<label for="correo">E-mail:</label>
+								<input id="correo" class="input" type="text" name="correo" placeholder="E-mail">
+							</div>
+
+							<div class="form-group">
+								<label for="direccionc">Direction:</label>
+								<input id="direccion" class="input" type="text" name="direccion" placeholder="Direccion">
+              </div>
+
+              <div class="form-group">
+                <label for="datenac">Birth Date:</label>
+                <input id="datenac" class="input" type="date" name="datenac">
+              </div>
+							<div class="add-to-cart">
+								<button class="add-to-cart-btn" onclick="change_data()">Guardar Informacion</button>
 							</div>
 
 							<div class="section-title">
@@ -85,15 +105,19 @@
 							</div>
 
 							<div class="form-group">
-								<input id="contra" class="input" type="text" name="contra" placeholder="Contraseña">
+								<input id="contra" class="input" type="password" name="contra" placeholder="Contraseña">
 							</div>
 
 							<div class="form-group">
-								<input id="contra-nueva" class="input" type="text" name="contra-nueva" placeholder="Nueva Contraseña">
+								<input id="contra-nueva" class="input" type="password" name="contra-nueva" placeholder="Nueva Contraseña">
+							</div>
+
+							<div class="form-group">
+								<input id="contra-conf" class="input" type="password" name="contra-conf" placeholder="Confirmar Nueva Contraseña">
 							</div>
 
 							<div class="add-to-cart">
-								<button class="add-to-cart-btn" onclick="change_data()">Guardar Informacion</button>
+								<button class="add-to-cart-btn" onclick="newpass()">Cambiar contraseña</button>
 							</div>
 
 					</div>
