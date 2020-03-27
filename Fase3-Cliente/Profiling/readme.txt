@@ -1,6 +1,6 @@
 Para ejecutar el profiling utilizamos 
 
->>> node cpu-profile.js o memoru-profile.js
+>>> node cpu-profile.js o memory-profile.js
 
 Los archivos generados se abren con la herramienta
 profile que incluye chrome.
