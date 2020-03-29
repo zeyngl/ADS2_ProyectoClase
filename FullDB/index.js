@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 
 /**Registrar nuevo producto */
 app.post('/producto', (req, res) => {
-    let registro = req.body.registro;
+    let registro = JSON.parse(req.body.registro);
     console.log(registro);
     MongoClient.connect(process.env.API_KEY, { useNewUrlParser: true }, function (err, db) {
         if (!err) {
@@ -37,6 +37,22 @@ app.post('/producto', (req, res) => {
     });
     res.status(200).send({ "message": "Producto registrado correctamente" });
 });
+
+
+app.post('/factura', (req, res) => {        
+    let registro = JSON.parse(req.body.registro);
+    console.log(registro);
+    MongoClient.connect(process.env.API_KEY, { useNewUrlParser: true }, function (err, db) {
+        if (err) throw err;
+        var dbo = db.db("AD2");
+        dbo.collection("FullDB").find(registro).toArray(function (err, result) {
+            if (err) throw err;
+            db.close();
+            res.status(200).send(JSON.stringify(result));
+        });
+    });
+});
+
 
 
 /**Obtiene el listado de todos los productos */
