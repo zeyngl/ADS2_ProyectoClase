@@ -5,7 +5,7 @@ function session(){
         window.location.href = "login.html";
     }
     
-    if(sucess != "00000-0"){
+    if(sucess != "0000000"){
         window.location.href = "index.html";
     }
 }

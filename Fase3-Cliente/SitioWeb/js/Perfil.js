@@ -6,7 +6,7 @@ function loaddata(){
 
     var namesucess = sessionStorage.getItem("user-name");
 
-    var url ="http://ec2-13-58-107-174.us-east-2.compute.amazonaws.com:4000/buscardatos/?ext="+sucess;
+    var url ="http://ec2-3-15-180-129.us-east-2.compute.amazonaws.com:4000/buscardatos/?ext="+sucess;
     fetch(url, {
     method: 'GET',
     headers:{
@@ -44,7 +44,7 @@ function change_data(){
   let correo = document.getElementById("correo").value;
   let direccion = document.getElementById("direccion").value;
   let fecha = document.getElementById("datenac").value;
-  let url = 'http://ec2-13-58-107-174.us-east-2.compute.amazonaws.com:4000/updatedatos';
+  let url = 'http://ec2-3-15-180-129.us-east-2.compute.amazonaws.com:4000/updatedatos';
   let data =  {
       nit: nit,
       nombre: nombre,
@@ -76,7 +76,7 @@ function newpass(){
   let newpass = document.getElementById("contra-nueva").value;
   let confpass = document.getElementById("contra-conf").value;
   if(newpass==confpass){
-    let url = 'http://ec2-13-58-107-174.us-east-2.compute.amazonaws.com:4000/cambiarpass';
+    let url = 'http://ec2-3-15-180-129.us-east-2.compute.amazonaws.com:4000/cambiarpass';
     let data =  {
         nit: nit,
         pass: newpass,
