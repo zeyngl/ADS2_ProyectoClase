@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+var bodyParser = require('body-parser')
 
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
@@ -31,9 +32,16 @@ app.post('/crearCuenta', function (req, res) {
 });
 
 
+app.get('/',function(req,res){
+    res.send(" hola");
+});
+
 app.post('/retiro', function (req, res) {
-    var correo = req.body.email;
-    var retiro = parseInt(req.body.saldo);
+
+    console.log(JSON.stringify(req.body));
+    var toJSON = JSON.parse(JSON.stringify(req.body));
+    var correo = toJSON.email;
+    var retiro = parseInt(toJSON.saldo);
 
     var query1 = "SELECT saldo FROM usuario WHERE correo = '"+correo+"';";
     var saldo = 0;
