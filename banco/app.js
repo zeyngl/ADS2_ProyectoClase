@@ -17,8 +17,9 @@ app.post('/crearCuenta', function (req, res) {
     var passwd = req.body.password;
     var correo = req.body.email;
     var saldo = req.body.saldo;
+    var banco = req.body.banco;
 
-    var query = "INSERT INTO usuario (name,password,email,saldo) VALUES("+name+","+passwd+","+correo+","+saldo+");";
+    var query = "INSERT INTO usuario (name,password,email,saldo,banco) VALUES("+name+","+passwd+","+correo+","+saldo+","+banco+");";
     var result = "";
 
     connection.query(query, function(err, results){
@@ -32,33 +33,49 @@ app.post('/crearCuenta', function (req, res) {
 
 app.post('/retiro', function (req, res) {
     var correo = req.body.email;
-    var retiro = req.body.saldo;
+    var retiro = parseInt(req.body.saldo);
 
-    var query = "CALL retiro("+correo+","+retiro+")";
+    var query1 = "SELECT saldo FROM usuario WHERE correo = '"+correo+"';";
+    var saldo = 0;
 
-    connection.query(query, function(err, results){
+    connection.query(query1, function(err, results){
         if(err) throw err;
-        result = results;
-    });
+        saldo = parseInt(results);
 
-    res.send(result);
+        if(saldo >= retiro){
+            var query2 = "UPDATE table_name SET saldo="+(saldo - retiro)+" WHERE correo='"+correo+"'";
+            connection.query(query2, function(err, results){
+                if(err) throw err;
+            });
+
+            res.send("transacción aprobada");
+        }else{
+            res.send("no hay fondos");
+        }
+    });
 });
+
 
 
 app.post('/deposito', function (req, res) {
     var correo = req.body.email;
-    var deposito = req.body.saldo;
+    var deposito = parseInt(req.body.saldo);
 
-    var query = "CALL deposito("+correo+","+deposito+")";
+    var query1 = "SELECT saldo FROM usuario WHERE correo = '"+correo+"';";
+    var saldo = 0;
 
-    connection.query(query, function(err, results){
+    connection.query(query1, function(err, results){
         if(err) throw err;
-        result = results;
+        saldo = parseInt(results);
+
+        var query2 = "UPDATE table_name SET saldo="+(saldo + retiro)+" WHERE correo='"+correo+"'";
+        connection.query(query2, function(err, results){
+            if(err) throw err;
+        });
+
+        res.send("transacción aprobada");
     });
-
-    res.send(result);
 });
-
 
 
 
