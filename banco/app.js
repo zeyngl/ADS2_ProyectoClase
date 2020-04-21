@@ -1,12 +1,14 @@
 const express = require("express");
 const app = express();
 var bodyParser = require('body-parser')
+app.use(bodyParser.json());
 
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
     host     : '54.211.1.152',
     user     : 'lizama',
-    password : 'user_password'
+    password : 'user_password',
+    database : 'ayd2'
 });
 
 
@@ -33,7 +35,7 @@ app.post('/crearCuenta', function (req, res) {
 
 
 app.get('/',function(req,res){
-    res.send(" hola");
+    res.send(" Analisis 2 Grupo 7");
 });
 
 app.post('/retiro', function (req, res) {
